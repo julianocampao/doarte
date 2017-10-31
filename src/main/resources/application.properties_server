@@ -1,4 +1,4 @@
-spring.datasource.url= jdbc:mysql://138.197.84.61:3306/doarte?autoReconnect=true&useSSL=false
-spring.datasource.username=root
-spring.datasource.password=823a5320A
+spring.datasource.url= jdbc:mysql://b345c8a65af339:14e66d32@us-cdbr-iron-east-05.cleardb.net/heroku_9e384c350da32af?reconnect=true
+spring.datasource.username=b345c8a65af339
+spring.datasource.password=14e66d32 
 
