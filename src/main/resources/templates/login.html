@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doarte - index</title>
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=News+Cycle:400,700">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+<link rel="stylesheet"
+	th:href="@{/vendors/website/fonts/font-awesome.min.css}">
+<link rel="stylesheet"
+	th:href="@{/vendors/website/fonts/ionicons.min.css}">
+
+<link rel="stylesheet" th:href="@{/vendors/website/css/user.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Contact-Form-Clean.css}">
+
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Features-Boxed.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Footer-Basic.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Footer-Clean.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Login-Form-Clean.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/nav-sticky-top.css}">
+</head>
+
+<body>
+	<div class="login-clean">
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-6"></div>
+
+		</div>
+
+
+		<form th:action="@{/login}" method="POST">
+			<h2 class="sr-only">Login Form</h2>
+			<div class="alert alert-danger" role="alert" id="containerErro"
+				style="display: none;">
+				<h1 style="text-align: center; font-size: 1em;">Erro ao efetuar
+					login</h1>
+				<h1 style="font-size: 1em;">Possíveis causas :</h1>
+				<ul>
+					<li>Usuário ou senha incorreto</li>
+					<li>Não tem acesso ao sistema</li>
+				</ul>
+			</div>
+			<div class="illustration">
+				<i class="icon ion-ios-navigate"></i>
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="email" name="username"
+					placeholder="Email">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="password" name="password"
+					placeholder="Password">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" type="submit">Log
+					In</button>
+			</div>
+		</form>
+	</div>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+	<script>
+		window.onload = validarErro;
+
+		function validarErro() {
+			console.log('validando erro');
+			var url = new URL(window.location);
+			var c = url.searchParams.get("error");
+			if (c != null) {
+				document.getElementById("containerErro").style.display = "block";
+			}
+
+		}
+	</script>
+</body>
+
+</html>

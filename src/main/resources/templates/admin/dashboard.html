@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+<title>Blank page</title>
+
+</head>
+
+<body>
+
+	<div layout:fragment="conteudo" class="content-wrapper">
+	
+	<label th:text="${cadastro.nome}" ></label>
+	</div>
+
+</body>
+</html>

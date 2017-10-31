@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doarte - index</title>
+<link rel="stylesheet"
+	th:href="@{/vendors/website/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=News+Cycle:400,700">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+<link rel="stylesheet"
+	th:href="@{/vendors/website/fonts/font-awesome.min.css}">
+<link rel="stylesheet"
+	th:href="@{/vendors/website/fonts/ionicons.min.css}">
+
+<link rel="stylesheet" th:href="@{/vendors/website/css/user.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Contact-Form-Clean.css}">
+
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Features-Boxed.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Footer-Basic.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Footer-Clean.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/Login-Form-Clean.css}">
+
+<link rel="stylesheet"
+	th:href="@{/vendors/website/css/nav-sticky-top.css}">
+</head>
+
+<body style="background-color: #EEF4F7;">
+	<nav
+		class="navbar navbar-default navbar-fixed-top navigation-clean-button"
+		style="background-color: rgb(14, 13, 13); padding: 7px;">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand navbar-link" href="#" style=""><span>Doarte
+				</span> </a>
+				<button class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#navcol-1">
+					<span class="sr-only">Toggle navigation</span><span
+						class="icon-bar"></span><span class="icon-bar"></span><span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="navcol-1">
+				<ul class="nav navbar-nav nav-right">
+					<li><a href="/index">Index </a></li>
+					<li><a href="/feedInstituicoes">Instituições cadastradas </a></li>
+					<li><a href="/feedItensDoados">Itens para doação </a></li>
+					<li><a href="/feedDesastres">Incidentes </a></li>
+				</ul>
+
+				<button class="btn btn-primary btn-sm navbar-btn navbar-right"
+					role="button" onclick="cadastro()" style="margin-left: 2px;">Cadastre
+					se</button>
+
+				<a  class="btn btn-primary btn-sm navbar-btn navbar-right"
+					role="button" href="/login">Login</a>
+
+			</div>
+		</div>
+	</nav>
+	<ol class="breadcrumb">
+		<li><a href="#"><span>DOAR </span></a></li>
+		<li><a href="#"><span>RECEBER </span></a></li>
+		<li class="active"><span> </span></li>
+	</ol>
+
+
+
+
+	<div class="container">
+		<div class="row product">
+			<div class="col-md-5 col-md-offset-0">
+				<img class="img-responsive" src="/vendors/website/img/doarte.jpg">
+			</div>
+			<div class="col-md-7">
+				<h2>Portal de doações</h2>
+				
+				<div></div>
+
+			</div>
+		</div>
+		<div class="page-header">
+			<form class="search-form">
+				<h2 style="padding: -7px;">Itens para doação</h2>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<span><i class="glyphicon glyphicon-search"></i></span>
+					</div>
+					<input class="form-control" type="text"
+						placeholder="Itens disponiveis " id="itensDisponiveis" /><br/> <select id="categoriaSelect"
+						 class="form-control">
+						<option value="0">Selecione</option>
+						<option th:each="cat : ${categorias}" th:value="${cat.id}"
+							th:text="${cat.descricao}"></option>
+					</select>
+					
+				</div>
+				<button class="btn btn-default" type="button" data-toggle="modal"
+							id="buscar" data-target="#myModal"
+							style="background-color: rgb(235, 104, 100);width: 100%;">Buscar</button>
+				<select class="form-control" style="width: 100%; display: none;">
+					<option value="" selected="">Categoria</option>
+					<option value="xxl">Roupas</option>
+					<option value="xl">Móveis</option>
+					<option value="m">Eletrônicos</option>
+					<option value="s">Instrumentos Musicais</option>
+				</select>
+			</form>
+
+
+			<div class="media">
+
+				<h4>Recomendação</h4>
+
+
+				<div class="media-body" th:if="${inst1 == null}"
+					style="background-color: white; padding: 10px 10px;">
+					<h4>Nenhuma instiuicão cadastrada</h4>
+
+
+				</div>
+
+
+				<div class="media-body" th:if="${inst1 != null}"
+					style="background-color: #DCDCDC; padding: 10px 10px;">
+					<div class="row">
+						<div class="col-md-4">
+							<img th:src="${'/fotos/'+inst1.urlImagem}"
+								style="width: 50%; height: 60%;">
+
+						</div>
+						<div>
+							<h4 th:text="${inst1.descricao}">BICHO DE RUA</h4>
+
+							<p th:text="${'Instituição :' + inst1.instituicao.nome}">ONG
+								destinada ao abrigo e cuidado de animais abandonados necessita
+								de doações de ração para cães e gatos.</p>
+							<p></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="media" th:if="${inst2 != null}"
+				style="background-color: #DCDCDC; padding: 10px 10px;">
+				<div class="row">
+					<div class="col-md-4">
+						<img th:src="${'/fotos/'+inst2.urlImagem}"
+							style="width: 50%; height: 60%;">
+
+					</div>
+					<div>
+						<h4 th:text="${inst2.descricao}">BICHO DE RUA</h4>
+
+						<p th:text="${'Instituição :' + inst2.instituicao.nome}">ONG
+							destinada ao abrigo e cuidado de animais abandonados necessita de
+							doações de ração para cães e gatos.</p>
+						<p></p>
+					</div>
+				</div>
+			</div>
+			<br /> <br />
+
+		</div>
+		<div class="features-boxed" style="margin: 2px;">
+			<div class="container">
+				<div class="intro">
+					<h2 class="text-center">Características</h2>
+					<p class="text-center">Um portal gratuito, voltado a doações
+						sem fins lucrativos.</p>
+				</div>
+				<div class="row features">
+					<div class="col-md-4 col-sm-6 item">
+						<div class="box">
+							<i class="fa fa-institution icon"
+								style="color: rgb(235, 104, 100);"></i>
+							<h3 class="name">Instituições</h3>
+							<p class="description">Instituições podem ter um perfil para
+								pedidos de doação e apresentação de seus feitos.</p>
+							<a href="#" class="learn-more">Leia mais»</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 item">
+						<div class="box">
+							<i class="glyphicon glyphicon-fire icon"
+								style="color: rgb(235, 104, 100);"></i>
+							<h3 class="name">Notificações de desastres</h3>
+							<p class="description">No portal é emitido notificações sobre
+								locais que necessitam de doação e apoio através de push
+								notification</p>
+							<a href="#" class="learn-more">Leia mais»</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 item">
+						<div class="box">
+							<i class="glyphicon glyphicon-transfer icon"
+								style="color: rgb(235, 104, 100);"></i>
+							<h3 class="name">Doar e Receber</h3>
+							<p class="description">No portal Doarte é possivel doar e
+								receber itens.</p>
+							<a href="#" class="learn-more">Leia mais»</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Itens disponiveis</h4>
+				</div>
+				<div class="modal-body">
+
+					<table class="table" style="color: black;">
+						<thead>
+							<tr>
+								<th>Imagem</th>
+								<th>Categoria</th>
+								<th>Descrição</th>
+
+							</tr>
+						</thead>
+						<tbody id="corpoTabela">
+
+
+						</tbody>
+
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<div class="footer-basic" style="background-color: rgb(1, 1, 1);">
+	<footer>
+		<div class="social">
+			<a href="#"><i class="icon ion-social-instagram"
+				style="color: #cfcfcf;"></i></a><a href="#"><i
+				class="icon ion-social-twitter"
+				style="background-color: rgba(252, 102, 18, 0); color: rgb(207, 207, 207);"></i></a>
+			<a href="#" style="color: rgb(207, 207, 207);"><i
+				class="icon ion-social-facebook"
+				style="background-color: rgba(254, 32, 18, 0);"></i></a>
+		</div>
+		<ul class="list-inline">
+			<li><a href="#">Sobre </a></li>
+			<li><a href="#">Termos</a></li>
+			<li></li>
+		</ul>
+		<p class="copyright">Doarte© 2017</p>
+	</footer>
+</div>
+<script th:src="@{/vendors/website/js/jquery.min.js}"></script>
+<script th:src="@{/vendors/website/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendors/website/js/bootbox.min.js}"></script>
+
+<script type="text/javascript">
+	function cadastro() {
+		bootbox.confirm({
+			message : "Selecione o tipo de cadastro",
+			buttons : {
+				confirm : {
+					label : 'Instituição',
+					className : 'btn-success'
+				},
+				cancel : {
+					label : 'Usuário',
+					className : 'btn-primary'
+				}
+			},
+			callback : function(result) {
+				console.log('This was logged in the callback: ' + result);
+				if (result == true) {
+					window.location.href = '/cadastroInstituicao';
+				} else {
+					window.location.href = '/cadastroUsuario';
+
+				}
+
+			}
+		});
+
+	}
+
+	$("#buscar").click(
+			function() {
+				var url  = '';
+				console.log('buscar');
+				$("#corpoTabela").html('');
+				if($("#itensDisponiveis").val() == ''){
+					
+					url = "/buscar/" + "0/" + $("#categoriaSelect").val();
+				}else{
+					url = "/buscar/" + $("#itensDisponiveis").val()+"/" + $("#categoriaSelect").val();
+				}
+
+				
+					$.ajax({
+						url : url,
+						method : 'GET',
+						dataType : "json",
+						contentType : 'application/json',
+						error : function(e) {
+
+							console.log('Ocorreu um erro', e);
+
+						},
+						success : function(e) {
+							console.log('sucesso ', e);
+							preencherTabela(e);
+						}
+
+					});
+				
+
+				function preencherTabela(json) {
+
+					console.log(json);
+					//console.log(JSON.stringify(json));
+					var result = '';
+					console.log(json.length);
+					for (var i = 0; i < json.length; i++) {
+						console.log(json[i])
+						result += '<tr>';
+						result += "<td><img style='height: 20%;' src="
+								+ "/fotos/" + json[i].urlImagem + "></td><td>"
+								+ json[i].categoria.descricao + "</td>"
+						result += "<td>" + json[i].descricao
+								+ "</td></tr>;"
+
+					}
+					$("#corpoTabela").html(result);
+
+				}
+
+			});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+<title>Blank page</title>
+
+</head>
+
+<body>
+
+	<div layout:fragment="conteudo" class="content-wrapper">
+		<form class="form-horizontal" method="POST"
+			th:action="@{/cadastroIncidente}" th:object="${incidente}">
+
+			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+					<span th:text="${detailedError.message}"></span>
+				</div>
+			</div>
+			<div class="alert alert-success"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}">Incidente salvo com sucesso!!!</span>
+			</div>
+
+			<!-- Main content -->
+			<section class="content container-fluid">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Cadastro de Incidente</h3>
+
+
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<div class="box-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Local</label> <input
+									th:field="*{local}" class="form-control"
+									id="exampleInputEmail1">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Descrição</label> <input
+									th:field="*{descricao}" class="form-control"
+									id="exampleInputEmail1">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Contato</label> <input
+									th:field="*{contato}" class="form-control"
+									id="exampleInputEmail1">
+							</div>
+
+							<div class="form-group row">
+								<label for="example-email-input" class="col-2 col-form-label">Estado</label>
+								<div class="col-10">
+									<select style="width: 100%;" id="selectEstado">
+										<option>Selecione</option>
+										<option th:each="est : ${estados}" th:value="${est.id}"
+											th:text="${est.nome}"></option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="example-email-input" class="col-2 col-form-label">Cidade</label>
+								<div class="col-10">
+									<select style="width: 100%;" id="selectCidade"
+										th:field="*{cidade}">
+										<option value="">Selecione</option>
+									</select>
+								</div>
+							</div>
+
+
+
+							<button class="btn btn-primary ">Cadastrar</button>
+						</div>
+					</div>
+
+				</div>
+
+			</section>
+		</form>
+	</div>
+
+</body>
+</html>

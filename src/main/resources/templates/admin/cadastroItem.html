@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+<title>Blank page</title>
+
+</head>
+
+<body>
+
+	<div layout:fragment="conteudo" class="content-wrapper">
+		<form class="form-horizontal" method="POST"
+			th:action="@{/cadastroItem}" th:object="${item}">
+
+			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+					<span th:text="${detailedError.message}"></span>
+				</div>
+			</div>
+			<div class="alert alert-success"
+				th:if="${!#strings.isEmpty(mensagem)}">
+				<span th:text="${mensagem}">Título salvo com sucesso!!!</span>
+			</div>
+
+			<!-- Main content -->
+			<section class="content container-fluid">
+
+
+
+
+
+
+
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Cadastro de item</h3>
+
+
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<div class="box-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Descrição item</label> <input
+									th:field="*{descricao}" class="form-control"
+									id="exampleInputEmail1">
+							</div>
+
+							<input type="hidden" th:field="*{urlImagem}" id="urlImage">
+
+							<div class="form-group">
+								<label>Categoria</label> <select th:field="*{categoria}"
+									class="form-control">
+									<option value="">Selecione</option>
+									<option th:each="cat : ${categorias}" th:value="${cat.id}"
+										th:text="${cat.descricao}"></option>
+								</select>
+							</div>
+							<div class="form-group has-warning">
+								<label class="control-label" for="file-input"
+									style="color: rgb(82, 82, 82);">Imagem</label> <input
+									id="upload-select" type="file" accept=".jpg,.jpeg,.png">
+							</div>
+							<button class="btn btn-primary ">Cadastrar</button>
+						</div>
+					</div>
+
+				</div>
+
+			</section>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+<title>Blank page</title>
+
+</head>
+
+<body>
+
+	<div layout:fragment="conteudo" class="content-wrapper">
+		<form class="form-horizontal" method="POST"
+			th:action="@{/itensDisponiveis}" th:object="${item}">
+
+
+
+			<!-- Main content -->
+			<section class="content container-fluid">
+
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Itens disponíveis</h3>
+
+
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body table-responsive no-padding">
+						<table class="table" style="color: black;">
+							<thead>
+								<tr>
+									<th>Imagem</th>
+									<th>Descrição</th>
+									<th>Status</th>
+									<th>Usuario</th>
+									<th>Instituicao</th>
+									<th>Avaliação</th>
+									<th>#</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="i : ${itens}">
+									<tr>
+										<td><img
+											th:src="${'/fotos/'+i.urlImagem}"
+											style="height: 20%;"></td>
+										<td th:text="${i.descricao}">...</td>
+										<td th:if="${i.tipoItem.descricao == 'Pendente'}"><span
+											class="label label-info">Aguardando instituição</span></td>
+										<td th:if="${i.tipoItem.descricao == 'Necessidade'}"><span
+											class="label label-primary">Necessidade</span></td>
+										<td th:if="${i.tipoItem.descricao == 'Doado'}"><span
+											class="label label-success">Doado</span></td>
+										<td th:text="${i.usuario.nome}">...</td>
+										<td th:if="${i.instituicao != null}"
+											th:text="${i.instituicao.nome}"></td>
+										<td th:if="${i.instituicao == null}">N/A</td>
+										<td th:if="${i.tipoItem.descricao == 'Doado'}"><select
+											th:attr="idItem=${i.id}" class="star" id="star">
+												<option th:selected="${i.avaliacaoUsuario == 1}" value="1">1</option>
+												<option th:selected="${i.avaliacaoUsuario == 2}" value="2">2</option>
+												<option th:selected="${i.avaliacaoUsuario == 3}" value="3">3</option>
+												<option th:selected="${i.avaliacaoUsuario == 4}" value="4">4</option>
+												<option th:selected="${i.avaliacaoUsuario == 5}" value="5">5</option>
+										</select></td>
+
+										<td th:if="${i.tipoItem.descricao != 'Doado'}">N/A</td>
+
+										<td><a type="submit"
+											th:href="@{/item/{codigo}/aceitar(codigo=${i.id})}"
+											class="btn btn-success">Aceitar</a></td>
+											
+											<td th:if="${i.tipoItem.descricao == 'Doado'}"><select
+											th:attr="idItem=${i.id}" disabled
+											class="star starInstituicao">
+												<option th:selected="${i.avaliacaoInstituicao == 1}"
+													value="1">1</option>
+												<option th:selected="${i.avaliacaoInstituicao == 2}"
+													value="2">2</option>
+												<option th:selected="${i.avaliacaoInstituicao == 3}"
+													value="3">3</option>
+												<option th:selected="${i.avaliacaoInstituicao == 4}"
+													value="4">4</option>
+												<option th:selected="${i.avaliacaoInstituicao == 5}"
+													value="5">5</option>
+										</select></td>
+									</tr>
+
+								</th:block>
+
+							</tbody>
+
+						</table>
+						<h2 th:if="${itens.size() == 0}">Nenhum registro cadastrado</h2>
+					</div>
+
+				</div>
+
+			</section>
+		</form>
+
+
+	</div>
+
+</body>
+</html>
