@@ -83,23 +83,43 @@
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
 }
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+@
+-webkit-keyframes spin { 0% {
+	-webkit-transform: rotate(0deg);
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+100%
+{
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+}
+}
+@
+keyframes spin { 0% {
+	transform: rotate(0deg);
+}
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);
+ 
+}
 }
 </style>
 
@@ -339,15 +359,12 @@ desired effect
 						href="/meusItensInstituicao"><i class="fa fa-link"></i> <span>Meus
 								itens</span></a></li>
 
-					<li><a href="/feedInstituicoes"><i class="fa fa-link"></i>
-							<span>Visualizar instituições</span></a></li>
+					<li th:if="${cadastro.acesso == 'USUARIO'}"><a
+						href="/logout"><i class="fa fa-link"></i> <span>Sair</span></a></li>
 
-					<li><a href="/feedDesastres"><i class="fa fa-link"></i> <span>Visualizar
-								incidentes</span></a></li>
 
-					<li><a href="/index	"><i class="fa fa-link"></i> <span>Ir
-								para home</span></a></li>
-
+					<li th:if="${cadastro.acesso == 'INSTITUICAO'}"><a
+						href="/logout"><i class="fa fa-link"></i> <span>Sair</span></a></li>
 
 
 
@@ -441,10 +458,10 @@ desired effect
 				</div>
 				<!-- /.tab-pane -->
 			</div>
-			<div id="loading" style="display:none;">
-				<h1 style="margin-top:100px" >Carregando..</h1>
+			<div id="loading" style="display: none;">
+				<h1 style="margin-top: 100px">Carregando..</h1>
 			</div>
-			
+
 		</aside>
 		<!-- /.control-sidebar -->
 		<!-- Add the sidebar's background. This div must be placed

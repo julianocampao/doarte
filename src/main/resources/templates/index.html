@@ -47,8 +47,7 @@
 		style="background-color: rgb(14, 13, 13); padding: 7px;">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-link" href="#" style=""><span>Doarte
-				</span> </a>
+
 				<button class="navbar-toggle collapsed" data-toggle="collapse"
 					data-target="#navcol-1">
 					<span class="sr-only">Toggle navigation</span><span
@@ -56,9 +55,12 @@
 						class="icon-bar"></span>
 				</button>
 			</div>
+
+
+
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="nav navbar-nav nav-right">
-					<li><a href="/index">Index </a></li>
+					<li><a href="/index">Home</a></li>
 					<li><a href="/feedInstituicoes">Instituições cadastradas </a></li>
 					<li><a href="/feedItensDoados">Itens para doação </a></li>
 					<li><a href="/feedDesastres">Incidentes </a></li>
@@ -68,7 +70,7 @@
 					role="button" onclick="cadastro()" style="margin-left: 2px;">Cadastre
 					se</button>
 
-				<a  class="btn btn-primary btn-sm navbar-btn navbar-right"
+				<a class="btn btn-primary btn-sm navbar-btn navbar-right"
 					role="button" href="/login">Login</a>
 
 			</div>
@@ -80,40 +82,75 @@
 		<li class="active"><span> </span></li>
 	</ol>
 
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#bs-carousel" data-slide-to="1"></li>
+    <li data-target="#bs-carousel" data-slide-to="2"></li>
+  </ol>
+  
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item slides active">
+      <div class="slide-1"></div>
+      <div class="hero">
+        <hgroup>
+            <h1>Doarte</h1>        
+            <h3>Portal de doações e interação entre doadores e instituições</h3>
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="item slides">
+      <div class="slide-2"></div>
+      <div class="hero">        
+        <hgroup>
+            <h1>Instituições</h1>        
+            <h3>Doações para instituições cadastradas </h3>
+        </hgroup>       
+        
+      </div>
+    </div>
+    <div class="item slides">
+      <div class="slide-3"></div>
+      <div class="hero">        
+        <hgroup>
+            <h1>Desastres Naturais e Campanhas</h1>        
+            <h3>Aberto para divulgação de doações para causas diversas  </h3>
+        </hgroup>
+        
+      </div>
+    </div>
+  </div> 
+</div>
 
 
 
-	<div class="container">
-		<div class="row product">
-			<div class="col-md-5 col-md-offset-0">
-				<img class="img-responsive" src="/vendors/website/img/doarte.jpg">
-			</div>
-			<div class="col-md-7">
-				<h2>Portal de doações</h2>
-				
-				<div></div>
-
-			</div>
-		</div>
+	
 		<div class="page-header">
 			<form class="search-form">
-				<h2 style="padding: -7px;">Itens para doação</h2>
+				<h2 style="padding: -7px;">Busca de itens para doação</h2>
 				<div class="input-group">
 					<div class="input-group-addon">
 						<span><i class="glyphicon glyphicon-search"></i></span>
 					</div>
 					<input class="form-control" type="text"
-						placeholder="Itens disponiveis " id="itensDisponiveis" /><br/> <select id="categoriaSelect"
-						 class="form-control">
+						placeholder="Itens disponiveis " id="itensDisponiveis" /><br /> <select
+						id="categoriaSelect" class="form">
 						<option value="0">Selecione</option>
 						<option th:each="cat : ${categorias}" th:value="${cat.id}"
 							th:text="${cat.descricao}"></option>
 					</select>
-					
+
 				</div>
-				<button class="btn btn-default" type="button" data-toggle="modal"
-							id="buscar" data-target="#myModal"
-							style="background-color: rgb(235, 104, 100);width: 100%;">Buscar</button>
+				<br>
+				<button class="btn btn-primary btn-sm" type="button"
+					data-toggle="modal" id="buscar" data-target="#myModal"
+					style="background-color: rgb(235, 104, 100); width: 15%;">Buscar</button>
 				<select class="form-control" style="width: 100%; display: none;">
 					<option value="" selected="">Categoria</option>
 					<option value="xxl">Roupas</option>
@@ -177,48 +214,7 @@
 			<br /> <br />
 
 		</div>
-		<div class="features-boxed" style="margin: 2px;">
-			<div class="container">
-				<div class="intro">
-					<h2 class="text-center">Características</h2>
-					<p class="text-center">Um portal gratuito, voltado a doações
-						sem fins lucrativos.</p>
-				</div>
-				<div class="row features">
-					<div class="col-md-4 col-sm-6 item">
-						<div class="box">
-							<i class="fa fa-institution icon"
-								style="color: rgb(235, 104, 100);"></i>
-							<h3 class="name">Instituições</h3>
-							<p class="description">Instituições podem ter um perfil para
-								pedidos de doação e apresentação de seus feitos.</p>
-							<a href="#" class="learn-more">Leia mais»</a>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 item">
-						<div class="box">
-							<i class="glyphicon glyphicon-fire icon"
-								style="color: rgb(235, 104, 100);"></i>
-							<h3 class="name">Notificações de desastres</h3>
-							<p class="description">No portal é emitido notificações sobre
-								locais que necessitam de doação e apoio através de push
-								notification</p>
-							<a href="#" class="learn-more">Leia mais»</a>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 item">
-						<div class="box">
-							<i class="glyphicon glyphicon-transfer icon"
-								style="color: rgb(235, 104, 100);"></i>
-							<h3 class="name">Doar e Receber</h3>
-							<p class="description">No portal Doarte é possivel doar e
-								receber itens.</p>
-							<a href="#" class="learn-more">Leia mais»</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 
 	<!-- Modal -->
@@ -315,34 +311,33 @@
 
 	$("#buscar").click(
 			function() {
-				var url  = '';
+				var url = '';
 				console.log('buscar');
 				$("#corpoTabela").html('');
-				if($("#itensDisponiveis").val() == ''){
-					
+				if ($("#itensDisponiveis").val() == '') {
+
 					url = "/buscar/" + "0/" + $("#categoriaSelect").val();
-				}else{
-					url = "/buscar/" + $("#itensDisponiveis").val()+"/" + $("#categoriaSelect").val();
+				} else {
+					url = "/buscar/" + $("#itensDisponiveis").val() + "/"
+							+ $("#categoriaSelect").val();
 				}
 
-				
-					$.ajax({
-						url : url,
-						method : 'GET',
-						dataType : "json",
-						contentType : 'application/json',
-						error : function(e) {
+				$.ajax({
+					url : url,
+					method : 'GET',
+					dataType : "json",
+					contentType : 'application/json',
+					error : function(e) {
 
-							console.log('Ocorreu um erro', e);
+						console.log('Ocorreu um erro', e);
 
-						},
-						success : function(e) {
-							console.log('sucesso ', e);
-							preencherTabela(e);
-						}
+					},
+					success : function(e) {
+						console.log('sucesso ', e);
+						preencherTabela(e);
+					}
 
-					});
-				
+				});
 
 				function preencherTabela(json) {
 
@@ -356,8 +351,7 @@
 						result += "<td><img style='height: 20%;' src="
 								+ "/fotos/" + json[i].urlImagem + "></td><td>"
 								+ json[i].categoria.descricao + "</td>"
-						result += "<td>" + json[i].descricao
-								+ "</td></tr>;"
+						result += "<td>" + json[i].descricao + "</td></tr>;"
 
 					}
 					$("#corpoTabela").html(result);
