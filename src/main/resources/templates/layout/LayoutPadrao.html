@@ -359,11 +359,13 @@ desired effect
 						href="/meusItensInstituicao"><i class="fa fa-link"></i> <span>Meus
 								itens</span></a></li>
 
-					<li th:if="${cadastro.acesso == 'USUARIO'}"><a
-						href="/logout"><i class="fa fa-link"></i> <span>Sair</span></a></li>
+				
 
 
 					<li th:if="${cadastro.acesso == 'INSTITUICAO'}"><a
+						href="/logout"><i class="fa fa-link"></i> <span>Sair</span></a></li>
+						
+							<li th:if="${cadastro.acesso == 'USUARIO'}"><a
 						href="/logout"><i class="fa fa-link"></i> <span>Sair</span></a></li>
 
 
