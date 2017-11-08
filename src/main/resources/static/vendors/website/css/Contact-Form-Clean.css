@@ -89,9 +89,7 @@
   opacity:1;
 }
 
-.contact-clean form .btn:active {
-  transform:translateY(1px);
-}
+
 
 .contact-clean form .btn-primary {
   background-color:#055ada !important;

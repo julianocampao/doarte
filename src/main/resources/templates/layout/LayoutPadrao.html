@@ -300,7 +300,7 @@ desired effect
 
 									<div class="pull-right">
 										<a style="width: 100%;" href="/logout"
-											class="btn btn-default btn-flat">Sign out</a>
+											class="btn btn-default btn-flat">Sair</a>
 									</div>
 								</li>
 							</ul>
@@ -337,8 +337,14 @@ desired effect
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MENU</li>
 					<!-- Optionally, you can add icons to the links -->
+					
+					<li th:if="${cadastro.acesso == 'INSTITUICAO'}"><a
+						href="/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+						
+						<li th:if="${cadastro.acesso == 'CLIENTE'}"><a
+						href="/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
 
-					<li th:if="${cadastro.acesso == 'CLIENTE'}" class="active"><a
+					<li th:if="${cadastro.acesso == 'CLIENTE'}"><a
 						href="/cadastroItem"><i class="fa fa-link"></i> <span>Doar
 								item</span></a></li>
 					<li th:if="${cadastro.acesso == 'CLIENTE'}"><a
@@ -364,6 +370,8 @@ desired effect
 
 					<li th:if="${cadastro.acesso == 'INSTITUICAO'}"><a
 						href="/logout"><i class="fa fa-link"></i> <span>Sair</span></a></li>
+						
+						
 						
 							<li th:if="${cadastro.acesso == 'CLIENTE'}"><a
 						href="/logout"><i class="fa fa-link"></i> <span>Sair</span></a></li>
